@@ -228,32 +228,51 @@ print(result)
 
 #excercise
 
-class cart():
-    def __init__(self):
-        self.shop_list = {}
+def display_cart(cart):
+    print("current shopping cart:")
+    for item, quantity in cart.items():
+        print(f'{item}: {quantity}')
 
-    def add_item(self):
-        item_tobe_added = input("what would you like to add")
-        if item_tobe_added in self.shop_list:
-            self.shop_list[item_tobe_added] += 1
+def shopping_cart():
+    cart = {}
+
+    while True:
+        print("option:")
+        print("1 - add item")
+        print("2 - delete item")
+        print("3 - veiw shopping cart")
+        print("4 - quit")
+
+        choice = input("enter your choice")
+
+        if choice == "1":
+            item = input("enter item name:")
+            quantity = int(input("enter quantity:"))
+            if item in cart:
+                cart[item] += quantity
+            else:
+                cart[item] = quantity
+            print(f"{quantity} {item}(s) added to the cart")
+
+        elif choice == "2":
+            item = input("enter item name to delete:")
+            if item in cart:
+                del cart[item]
+                print(f"{item} was removed")
+            else:
+                print(f"{item} is not in cart")
+        elif choice == "3":
+            display_cart(cart)
+        elif choice == "4":
+            display_cart(cart)
+            print("thank you come again")
+            break
         else:
-            self.shop_list[item_tobe_added] = 1
-
-def delete_item(self):
-    item_tobe_deleted = input("What would you like to delete? ")
-    if item_tobe_deleted in self.shop_list:
-        del self.shop_list[item_tobe_deleted]
-    else:
-        print("you don't have that in your list.")
+            print("invalid choice. please select valid option.")
 
 
-def veiw_list(self):
-    for key, value in self.shop_list.item():
-        print(value," ",key)
-
-def quit_input(self):
-    print("Thank you come again")
-
+    shopping_cart()
+    
 #creating moduel
 
 import test_1 
